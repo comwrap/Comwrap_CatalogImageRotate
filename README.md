@@ -22,9 +22,3 @@ Producers can rotate the product images in the customer area by 90 degrees in ed
   
   ![](_files/2.png)
 
-
-## Frontend
-
-- Login to vendor panel >> Add/Edit Product >> you will see rotate icon if image uploaded(Please check below screenshot) >> click on rotate icon and save the product.
-
-    ![](_files/3.png)
