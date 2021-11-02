@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Comwrap" translate="label" sortOrder="990">
+            <label>Comwrap</label>
+        </tab>
+        <section id="image_rotate" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Catalog Image Rotate</label>
+            <tab>Comwrap</tab>
+            <resource>Comwrap_CatalogImageRotate::config_rotate</resource>
+            <group id="general_settings" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enabled" translate="label comment" sortOrder="0" type="select" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enable Catalog Image Rotate</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="angle" translate="label comment" sortOrder="1" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Catalog Image Rotate Angle</label>
+                    <validate>required-entry validate-number validate-digits-range digits-range-0-360</validate>
+                    <comment>Ex. 45, 90, 180, etc....</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
