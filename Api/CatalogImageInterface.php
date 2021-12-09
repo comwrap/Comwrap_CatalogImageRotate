@@ -5,9 +5,9 @@ namespace Comwrap\CatalogImageRotate\Api;
 
 interface CatalogImageInterface
 {
-    const URL = 'url';
-    const FILE = 'file';
-    const ANGLE = 'angle';
+    public const URL = 'url';
+    public const FILE = 'file';
+    public const ANGLE = 'angle';
 
     /**
      * Get Url
