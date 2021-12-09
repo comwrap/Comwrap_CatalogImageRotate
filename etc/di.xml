@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Comwrap\CatalogImageRotate\Api\ConfigInterface" type="Comwrap\CatalogImageRotate\Model\Config"/>
+    <preference for="Comwrap\CatalogImageRotate\Api\CatalogImageInterface" type="Comwrap\CatalogImageRotate\Model\CatalogImage"/>
+    <type name="Magento\Catalog\Model\Product\Gallery\CreateHandler">
+        <plugin name="ComwrapCatalogImageRotateModelProductGalleryCreateHandler"
+                type="Comwrap\CatalogImageRotate\Plugin\BeforeUpload"/>
+    </type>
+</config>
