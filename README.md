@@ -6,7 +6,7 @@ Producers can rotate the product images in the customer area by 90 degrees in ed
 
 ## Backend
 
-####Store Configuration
+#### Store Configuration
 - On the Admin sidebar, go to Stores > Settings > Configuration.
 - Complete the default settings
   - In the **Catalog** section > **Catalog** > choose **Catalog Image Rotate**.
@@ -15,7 +15,7 @@ Producers can rotate the product images in the customer area by 90 degrees in ed
   - Add Rotate Angle in **Catalog Image Rotate Angle**.
     ![](_files/1.png)
 
-####Catalog Products Edit
+#### Catalog Products Edit
 - On the Admin sidebar, go to Catalog > Products.
 - Add/Edit Product >> Images And Videos >> you will see rotate icon if image uploaded(Please check below screenshot) >> click on rotate icon and save the product.
  
