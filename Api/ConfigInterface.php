@@ -5,8 +5,8 @@ namespace Comwrap\CatalogImageRotate\Api;
 
 interface ConfigInterface
 {
-    const XML_ENABLED = 'catalog/general_settings/enabled';
-    const XML_ANGLE = 'catalog/general_settings/angle';
+    public const XML_ENABLED = 'catalog/general_settings/enabled';
+    public const XML_ANGLE = 'catalog/general_settings/angle';
 
     /**
      * Is enabled
