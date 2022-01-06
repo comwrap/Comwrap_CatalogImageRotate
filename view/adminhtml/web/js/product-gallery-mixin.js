@@ -69,6 +69,7 @@ define([
                 }
                 var self = this;
                 var rotated = imageData.rotated,
+                    old_url = imageData.url,
                     error = imageData.error;
                 var $imageContainer = self.findElement(imageData);
                 $imageContainer.addClass('rotated').find('.is-rotated').val(1);
@@ -79,7 +80,7 @@ define([
                     url: postUrl,
                     type: 'POST',
                     dataType: 'json',
-                    data: {image_url: url, rotated: rotated, error:error, angle:angle},
+                    data: {image_url: url, image_old_url: old_url, rotated: rotated, error:error, angle:angle},
                     showLoader: true
                 }).done(function(response) {
                     if (response.file) {
@@ -100,7 +101,7 @@ define([
                             $imageContainer.parent().find('.image-swatch_image').val(response.file);
                         }
                         $imageContainer.find('.file').val(response.file);
-                        $imageContainer.find('.product-image').attr("src",response.url + '?' + new Date().getTime());
+                        $imageContainer.find('.product-image').attr("src",response.url);
                         $imageContainer.data('imageData').file = response.file;
                         $imageContainer.data('imageData').url = response.url;
                         $imageContainer.data('imageData').rotated = 1;

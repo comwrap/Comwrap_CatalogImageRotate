@@ -72,6 +72,7 @@ class RotateImage
      * Catalog image rotate
      *
      * @param string|null $imageUrl
+     * @param string|null $imageOldUrl
      * @param int|null $rotated
      * @param string|null $error
      * @param int|null $previousAngle
@@ -82,6 +83,7 @@ class RotateImage
      */
     public function catalogImageRotate(
         ?string $imageUrl,
+        ?string $imageOldUrl,
         ?int $rotated,
         ?string $error,
         ?int $previousAngle,
@@ -106,20 +108,22 @@ class RotateImage
                 }
                 if ($this->file->isExists($absolutePath)) {
                     $angle = $this->config->getAngle() + $previousAngle;
-                    $fileName = $this->getUniqueFileName($imageUrl);
-                    if ($tmpPath) {
-                        $fileName = $this->getUniqueFileName($imageUrl, true);
-                    }
+                    $fileName = $this->getUniqueFileName($imageUrl, true);
                     $dispersionPath = Uploader::getDispersionPath($fileName);
                     $filePath = $dispersionPath . '/' . $fileName;
                     $imageRotateDestination = $mediaPath->getAbsolutePath($baseTmpPath) . '/' . $filePath;
                     $imageRotate = $this->imageFactory->create();
                     $imageRotate->open($absolutePath);
                     $imageRotate->rotate($angle);
-                    if (!$tmpPath && $this->file->isExists($imageRotateDestination)) {
-                        $this->file->deleteFile($imageRotateDestination);
-                    }
                     $imageRotate->save($imageRotateDestination);
+                    $tmpRelativePath = $mediaPath->getRelativePath($baseTmpPath);
+                    if ($imageOldUrl != '' && (strpos($imageOldUrl, $tmpRelativePath) !== false)) {
+                        $oldPath = explode($tmpRelativePath, $imageOldUrl);
+                        $oldAbsolutePath = $mediaPath->getAbsolutePath($baseTmpPath). '/' . $oldPath[1];
+                        if ($this->file->isExists($oldAbsolutePath) && $imageUrl !== $oldPath[1]) {
+                            $this->file->deleteFile($oldAbsolutePath);
+                        }
+                    }
                     $rotatedURL = $this->productMediaConfig->getTmpMediaUrl($filePath);
                     if ($tmpPath && $tmp) {
                         $filePath = $filePath . '.tmp';
@@ -153,7 +157,8 @@ class RotateImage
             ? $mediaPath->getAbsolutePath($this->productMediaConfig->getTmpMediaPath($file))
             : $mediaPath->getAbsolutePath($this->productMediaConfig->getMediaPath($file));
         // phpcs:disable Magento2.Functions.DiscouragedFunction
-        $destFile = FileUploader::getNewFileName($destinationFile);
+        $fileInfo = pathinfo($destinationFile);
+        $destFile = $fileInfo['filename'] . '_' . time() . '.' . $fileInfo['extension'];
         return $destFile;
     }
 }

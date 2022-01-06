@@ -41,13 +41,21 @@ class Upload extends Action implements HttpPostActionInterface
     public function execute()
     {
         $imageUrl = (string)$this->getRequest()->getParam('image_url', '');
+        $imageOldUrl = (string)$this->getRequest()->getParam('image_old_url', '');
         $rotated = (int)$this->getRequest()->getParam('rotated', 0);
         $error = (string)$this->getRequest()->getParam('error', '');
         $previousAngle = (int)$this->getRequest()->getParam('angle', 0);
         if ($previousAngle == 360) {
             $previousAngle = 0;
         }
-        $result = $this->rotateImage->catalogImageRotate($imageUrl, $rotated, $error, $previousAngle, true);
+        $result = $this->rotateImage->catalogImageRotate(
+            $imageUrl,
+            $imageOldUrl,
+            $rotated,
+            $error,
+            $previousAngle,
+            true
+        );
 
         /** @var Json $response */
         $response = $this->resultFactory->create(ResultFactory::TYPE_JSON);
