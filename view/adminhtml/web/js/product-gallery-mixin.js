@@ -141,10 +141,6 @@ define([
                 });
 
                 element = $(element).data('imageData', imageData);
-                var isImageType = imageData['media_type'] === 'external-video' ? false : true;
-                if (isImageType) {
-                    element.find('.rotate').show();
-                }
 
                 if (count === 0) {
                     element.prependTo(this.element);
@@ -164,6 +160,11 @@ define([
 
                 imgElement.on('load', this._updateImageDimesions.bind(this, element));
 
+                var isImageType = imageData['media_type'] === 'external-video' ? false : true;
+                if (isImageType) {
+                    element.find('.rotate').show();
+                }
+                
                 $.each(this.options.types, $.proxy(function (index, image) {
                     if (imageData.file === image.value) {
                         this.element.trigger('setImageType', {
