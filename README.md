@@ -4,6 +4,13 @@ Comwrap CatalogImageRotate an admin/producer able to rotate the product images a
 Admin users can rotate the product images by 90 degrees in edit mode.
 Producers can rotate the product images in the customer area by 90 degrees in edit mode.
 
+## Versions
+
+| Module version | Magento version |
+| ----------- | ----------- |
+| 1.0.x      | <= 2.4.3       |
+| 1.1.x   | > 2.4.3        |
+
 ## Backend
 
 #### Store Configuration
