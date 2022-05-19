@@ -1,6 +1,6 @@
 {
     "name": "comwrap/catalog-image-rotate",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "This module is used to rotate the product image",
     "type": "magento2-module",
     "require": {
